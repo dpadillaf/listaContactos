@@ -15,7 +15,7 @@ import java.sql.*;
 public class Conexion {
     private static Connection cnx = null;
     
-   public static Connection obtener() throws SQLException, ClassNotFoundException {
+   public static Connection obtener() throws SQLException, ClassNotFoundException { 
       if (cnx == null) {
          try {
             Class.forName("com.mysql.jdbc.Driver"); //importanción del driver
@@ -29,7 +29,7 @@ public class Conexion {
       return cnx;
     }
    
-   public static void cerrar() throws SQLException {
+   public static void cerrar() throws SQLException { //método para terminar conexión a bd
       if (cnx != null) {
          cnx.close();
       }

@@ -19,23 +19,23 @@ import logica.Contacto;
 public class ContactosPersistencia {
     private final String tabla = "contacto";
     
-    public void guardar(Connection conexion, Contacto contacto) throws SQLException{
+    public void guardar(Connection conexion, Contacto contacto) throws SQLException{ //inserta o actualiza contacto
       try{
          PreparedStatement consulta;
          if(contacto.getId() == null){
             consulta = conexion.prepareStatement("INSERT INTO " + this.tabla + "(nombre, email, num_fijo, num_movil, direccion, categoria) VALUES(?, ?, ?, ?, ?, ?)");
             consulta.setString(1, contacto.getNombre());
             consulta.setString(2, contacto.getEmail());
-            consulta.setInt(3, contacto.getNum_fijo());
-            consulta.setInt(4, contacto.getNum_movil());
+            consulta.setLong(3, contacto.getNum_fijo());
+            consulta.setLong(4, contacto.getNum_movil());
             consulta.setString(5, contacto.getDireccion());
             consulta.setString(6, contacto.getCategoria());
          }else{
             consulta = conexion.prepareStatement("UPDATE " + this.tabla + " SET nombre = ?, email = ?, num_fijo = ?, num_movil = ?, direccion = ?, categoria = ? WHERE id = ?");
             consulta.setString(1, contacto.getNombre());
             consulta.setString(2, contacto.getEmail());
-            consulta.setInt(3, contacto.getNum_fijo());
-            consulta.setInt(4, contacto.getNum_movil());
+            consulta.setLong(3, contacto.getNum_fijo());
+            consulta.setLong(4, contacto.getNum_movil());
             consulta.setString(5, contacto.getDireccion());
             consulta.setString(6, contacto.getCategoria());
             consulta.setInt(7, contacto.getId());
@@ -46,7 +46,7 @@ public class ContactosPersistencia {
       }
    }
     
-    public void eliminar(Connection conexion, Contacto contacto) throws SQLException{
+    public void eliminar(Connection conexion, Contacto contacto) throws SQLException{ //elimina un registro por su id
       try{
          PreparedStatement consulta = conexion.prepareStatement("DELETE FROM " + this.tabla + " WHERE id = ?");
          consulta.setInt(1, contacto.getId());
@@ -56,13 +56,13 @@ public class ContactosPersistencia {
       }
    }
     
-    public List<Contacto> recuperarTodas(Connection conexion) throws SQLException{
+    public List<Contacto> recuperarTodas(Connection conexion) throws SQLException{ //lista todos los registros
       List<Contacto> contactos = new ArrayList<>();
       try{
          PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM " + this.tabla + " ORDER BY nombre");
          ResultSet resultado = consulta.executeQuery();
          while(resultado.next()){
-            contactos.add(new Contacto(resultado.getInt("id"), resultado.getString("nombre"), resultado.getString("email"), resultado.getInt("num_fijo"), resultado.getInt("num_movil"), resultado.getString("direccion"), resultado.getString("categoria")));
+            contactos.add(new Contacto(resultado.getInt("id"), resultado.getString("nombre"), resultado.getString("email"), resultado.getLong("num_fijo"), resultado.getLong("num_movil"), resultado.getString("direccion"), resultado.getString("categoria")));
          }
       }catch(SQLException ex){
          throw new SQLException(ex);

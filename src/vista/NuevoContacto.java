@@ -211,8 +211,8 @@ public class NuevoContacto extends java.awt.Dialog {
                 Contacto contacto = new Contacto();
                 contacto.setNombre(textNombre.getText());
                 contacto.setEmail(textEmail.getText());
-                contacto.setNum_fijo(Integer.parseInt(textTelFijo.getText()));
-                contacto.setNum_movil(Integer.parseInt(textTelMovil.getText()));
+                contacto.setNum_fijo(Long.parseLong(textTelFijo.getText()));
+                contacto.setNum_movil(Long.parseLong(textTelMovil.getText()));
                 contacto.setDireccion(textDireccion.getText());
                 contacto.setCategoria((String) comboCategoria.getSelectedItem());
 

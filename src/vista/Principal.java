@@ -26,7 +26,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         foco = null;
         initComponents();
-        agregaLista ();
+        agregaLista (); //llena la lista de contactos
         this.setResizable(false); //Anula maximizar
         this.setLocationRelativeTo(null); //Centra la ventana
     }
@@ -188,26 +188,30 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Escucha la Tarea seleciona en la lista y la focusea
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        int posicion = jList1.locationToIndex(evt.getPoint()); //Escucha la Tarea seleciona en la lista y la focusea
+        int posicion = jList1.locationToIndex(evt.getPoint()); 
         foco = contactos.get(posicion);
         labelDescripcion.setText(templateContacto ());
         btnEdit.setEnabled(true);
         btnDelete.setEnabled(true);
     }//GEN-LAST:event_jList1MouseClicked
 
+    //abre ventana de nuevo contacto
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        NuevoContacto nc = new NuevoContacto(this, true);
+        NuevoContacto nc = new NuevoContacto(this, true); 
         nc.setVisible(true);
         agregaLista();
     }//GEN-LAST:event_btnAddActionPerformed
 
+    //abre ventana para editar contacto
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         EditContact ec = new EditContact(this, true, foco);
         ec.setVisible(true);
         agregaLista();
     }//GEN-LAST:event_btnEditActionPerformed
 
+    //elimina un contacto
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try{
             this.contactosPersistencia.eliminar(Conexion.obtener(), foco);
@@ -271,9 +275,9 @@ public class Principal extends javax.swing.JFrame {
         foco = null;
     }
     
-    private String templateContacto (){
+    private String templateContacto (){ //Template para visualización de contacto seleccionado
         
-        if (foco.getNombre().length() > 23){
+        if (foco.getNombre().length() > 23){ //función para partir nombre en caso de que sea muy largo
             String nom1 = "", nom2 = "";
             nom1 = foco.getNombre().substring(0, 23);
             nom2 = foco.getNombre().substring(23, foco.getNombre().length());

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-01-2020 a las 00:50:40
+-- Tiempo de generación: 01-02-2020 a las 00:24:39
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -32,8 +32,8 @@ CREATE TABLE `contacto` (
   `id` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `num_fijo` int(15) NOT NULL,
-  `num_movil` int(15) NOT NULL,
+  `num_fijo` bigint(20) NOT NULL,
+  `num_movil` bigint(20) NOT NULL,
   `direccion` varchar(60) NOT NULL,
   `categoria` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -43,8 +43,7 @@ CREATE TABLE `contacto` (
 --
 
 INSERT INTO `contacto` (`id`, `nombre`, `email`, `num_fijo`, `num_movil`, `direccion`, `categoria`) VALUES
-(2, 'Daniel Palacios', 'gs@asds.co', 3453244, 565643, 'bb aqui ya', 'Familia'),
-(5, 'David Padilla Fonseca G', 'sadasd@dddd.co', 233535, 56453, 'b blasdk', 'Trabajo');
+(2, 'Daniel Palacios', 'gs@asds.co', 345324466, 565643, 'bb aqui ya', 'Amigos');
 
 --
 -- Índices para tablas volcadas
@@ -64,7 +63,7 @@ ALTER TABLE `contacto`
 -- AUTO_INCREMENT de la tabla `contacto`
 --
 ALTER TABLE `contacto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

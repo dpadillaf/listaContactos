@@ -15,8 +15,8 @@ public class Contacto {
     private final Integer id;
     private String nombre;
     private String email;
-    private int num_fijo;
-    private int num_movil;
+    private long num_fijo;
+    private long num_movil;
     private String direccion;
     private String categoria;
 
@@ -24,7 +24,7 @@ public class Contacto {
         this.id = null;
     }
 
-    public Contacto(Integer id, String nombre, String email, int num_fijo, int num_movil, String direccion, String categoria) {
+    public Contacto(Integer id, String nombre, String email, long num_fijo, long num_movil, String direccion, String categoria) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -54,19 +54,19 @@ public class Contacto {
         this.email = email;
     }
 
-    public int getNum_fijo() {
+    public long getNum_fijo() {
         return num_fijo;
     }
 
-    public void setNum_fijo(int num_fijo) {
+    public void setNum_fijo(long num_fijo) {
         this.num_fijo = num_fijo;
     }
 
-        public int getNum_movil() {
+        public long getNum_movil() {
         return num_movil;
     }
 
-    public void setNum_movil(int num_movil) {
+    public void setNum_movil(long num_movil) {
         this.num_movil = num_movil;
     }
 

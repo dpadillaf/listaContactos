@@ -27,6 +27,7 @@ public class EditContact extends java.awt.Dialog {
         
         this.contacto = contacto;
         
+        //llena los inputs con la info de contacto
         textNombre.setText(contacto.getNombre());
         textEmail.setText(contacto.getEmail());
         textTelFijo.setText(String.valueOf(contacto.getNum_fijo()));
@@ -216,21 +217,21 @@ public class EditContact extends java.awt.Dialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (textTelFijo.getText().length() > 15 || textTelMovil.getText().length() > 15){
+        if (textTelFijo.getText().length() > 15 || textTelMovil.getText().length() > 15){ //validación para números de telefonos
             JOptionPane.showMessageDialog(null, "Número de teléfono fijo o móvil mayor a 15 dígitos");
-        }else if(textNombre.getText().length() > 45){
+        }else if(textNombre.getText().length() > 45){ //validación de largo del nombre
             JOptionPane.showMessageDialog(null, "Nombre demasiado largo");
         }else{
             try{
-            
+            //recoge información de inputs
                 contacto.setNombre(textNombre.getText());
                 contacto.setEmail(textEmail.getText());
-                contacto.setNum_fijo(Integer.parseInt(textTelFijo.getText()));
-                contacto.setNum_movil(Integer.parseInt(textTelMovil.getText()));
+                contacto.setNum_fijo(Long.parseLong(textTelFijo.getText()));
+                contacto.setNum_movil(Long.parseLong(textTelMovil.getText()));
                 contacto.setDireccion(textDireccion.getText());
                 contacto.setCategoria((String) comboCategoria.getSelectedItem());
 
-                this.contactosPersistencia.guardar(Conexion.obtener(), contacto);
+                this.contactosPersistencia.guardar(Conexion.obtener(), contacto); //realiza update
 
                  setVisible(false);
                  dispose ();
